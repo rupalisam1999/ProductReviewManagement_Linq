@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProductReviewManagement_Linq
 {
-    class ProductReview
+   public class ProductReview
     {
         public int ProductId
         {
