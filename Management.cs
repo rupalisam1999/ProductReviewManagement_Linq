@@ -76,15 +76,26 @@ namespace ProductReviewManagement_Linq
             dataTable.Columns.Add("isLike");
             return dataTable;
         }
+     
+        ////UC8- Retrieve records from list whos isLike value is true.
+        //public void RetrieveRecordsWithIsLikeTrue(DataTable table)
+        //{
+        //    var recordData = from productReview in table.AsEnumerable() where (productReview.Field<bool>("isLike") == true) select productReview;
+        //    Console.WriteLine("Records with is like true = ");
+        //    foreach (var lists in recordData)
+        //    {
+        //        Console.WriteLine("Product id = " + lists.Field<int>("ProductId") + "User id = " + lists.Field<int>("UserId") + "Rating is = " + lists.Field<double>("Rating") + " Review is = " + lists.Field<string>("Review") + " isLike = " + lists.Field<bool>("isLike"));
+        //    }
+        //}
 
-        //UC8- Retrieve records from list whos isLike value is true.
-        public void RetrieveRecordsWithIsLikeTrue(DataTable table)
+        //UC9- Finds the avrage rating.
+
+        public void findAvrageRating(List<ProductReview> listProductReviews)
         {
-            var recordData = from productReview in table.AsEnumerable() where (productReview.Field<bool>("isLike") == true) select productReview;
-            Console.WriteLine("Records with is like true = ");
-            foreach (var lists in recordData)
+            var recordData = listProductReviews.GroupBy(x => x.ProductId).Select(x => new { ProductId = x.Key, Average = x.Average(y => y.Rating) });
+            foreach (var list in recordData)
             {
-                Console.WriteLine("Product id = " + lists.Field<int>("ProductId") + "User id = " + lists.Field<int>("UserId") + "Rating is = " + lists.Field<double>("Rating") + " Review is = " + lists.Field<string>("Review") + " isLike = " + lists.Field<bool>("isLike"));
+                Console.WriteLine(list.ProductId + "----------" + list.Average);
             }
         }
     }
