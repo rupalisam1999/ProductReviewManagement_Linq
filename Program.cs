@@ -34,6 +34,7 @@ namespace ProductReviewManagement_Linq
             }
             Management management = new Management();
             management.topRecords(list);
+            management.selectedRecords(list);
         }
        
     }
