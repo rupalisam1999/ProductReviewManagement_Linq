@@ -56,6 +56,8 @@ namespace ProductReviewManagement_Linq
 
             }
 
+            management.RetrieveRecordsWithIsLikeTrue(dataTable);
+
         }
 
 

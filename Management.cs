@@ -57,7 +57,7 @@ namespace ProductReviewManagement_Linq
                 Console.WriteLine(list.ProductId + "----------" + list.Review);
             }
         }
-
+        //UC6- skip 5 records from list
         public void skipTopFiveRecords(List<ProductReview> listProductReviews)
         {
             var recordData = (from productReview in listProductReviews select productReview).Skip(5).ToList();
@@ -65,6 +65,7 @@ namespace ProductReviewManagement_Linq
             display(recordData);
         }
 
+        //UC7- Add extra rows in datatable
 
         public DataTable createTable(List<ProductReview> listProductReviews)
         {
@@ -74,6 +75,17 @@ namespace ProductReviewManagement_Linq
             dataTable.Columns.Add("Review");
             dataTable.Columns.Add("isLike");
             return dataTable;
+        }
+
+        //UC8- Retrieve records from list whos isLike value is true.
+        public void RetrieveRecordsWithIsLikeTrue(DataTable table)
+        {
+            var recordData = from productReview in table.AsEnumerable() where (productReview.Field<bool>("isLike") == true) select productReview;
+            Console.WriteLine("Records with is like true = ");
+            foreach (var lists in recordData)
+            {
+                Console.WriteLine("Product id = " + lists.Field<int>("ProductId") + "User id = " + lists.Field<int>("UserId") + "Rating is = " + lists.Field<double>("Rating") + " Review is = " + lists.Field<string>("Review") + " isLike = " + lists.Field<bool>("isLike"));
+            }
         }
     }
 }
