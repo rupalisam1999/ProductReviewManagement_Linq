@@ -56,7 +56,8 @@ namespace ProductReviewManagement_Linq
 
             }
 
-            management.RetrieveRecordsWithIsLikeTrue(dataTable);
+            //nagement.RetrieveRecordsWithIsLikeTrue(dataTable);
+            management.findAvrageRating(list);
 
         }
 
