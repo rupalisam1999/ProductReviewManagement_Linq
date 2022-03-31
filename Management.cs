@@ -36,11 +36,23 @@ namespace ProductReviewManagement_Linq
 
         public void retrieveCountOfRecords(List<ProductReview> listProductReviews)
         {
-            var recordData = listProductReviews.GroupBy(x => x.ProductId).Select(x => new { ProductId = x.Key, Count = x.Count() });
+            //use linq operators group by and count
+            var recordData = listProductReviews.GroupBy(x => x.ProductId).Select(x => new { ProductId = x.Key, Count = x.Count() }); 
             Console.WriteLine("\n Product id and count = ");
             foreach (var list in recordData)
             {
                 Console.WriteLine(list.ProductId + " = " + list.Count);
+            }
+        }
+
+        //UC5- Retrieves the productd and review.
+        public void retrieveProductdAndReview(List<ProductReview> listProductReviews)
+        {
+            var recordData = listProductReviews.Select(x => new { ProductId = x.ProductId, Review = x.Review });
+            Console.WriteLine("\n Product id and review = ");
+            foreach (var list in recordData)
+            {
+                Console.WriteLine(list.ProductId + "----------" + list.Review);
             }
         }
     }
