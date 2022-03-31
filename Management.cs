@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,6 +9,7 @@ namespace ProductReviewManagement_Linq
 {
     public class Management
     {
+        private readonly DataTable dataTable = new DataTable();
         public void display(List<ProductReview> recordData)
         {
             foreach (var list in recordData)
@@ -61,6 +63,17 @@ namespace ProductReviewManagement_Linq
             var recordData = (from productReview in listProductReviews select productReview).Skip(5).ToList();
             Console.WriteLine("\n Top 5 records from list = ");
             display(recordData);
+        }
+
+
+        public DataTable createTable(List<ProductReview> listProductReviews)
+        {
+            dataTable.Columns.Add("ProductId");
+            dataTable.Columns.Add("UserId");
+            dataTable.Columns.Add("Rating");
+            dataTable.Columns.Add("Review");
+            dataTable.Columns.Add("isLike");
+            return dataTable;
         }
     }
 }
